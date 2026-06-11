@@ -19,10 +19,10 @@ export function HomePage() {
               <div className="text-xs text-slate-500">template starter</div>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
+          {/* <div className="flex flex-wrap gap-2">
             <EnvStatus />
             <Badge>Vite + React + Hono</Badge>
-          </div>
+          </div> */}
         </nav>
 
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">

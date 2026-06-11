@@ -25,12 +25,12 @@ export function AccessPasswordForm({ loading, error, onSubmit }: Props) {
         <div className="mb-5 inline-flex rounded-2xl bg-emerald-300/10 p-3 text-emerald-200">
           <LockKeyhole />
         </div>
-        <h1 className="text-3xl font-black text-white">Demo 访问保护</h1>
-        <p className="mt-3 text-sm leading-7 text-slate-300">当前 Demo 设置了轻量访问密码。密码仅在服务端环境变量中校验，不会进入前端构建产物。</p>
+        <h1 className="text-3xl font-black text-white">访问保护</h1>
+        <p className="mt-3 text-sm leading-7 text-slate-300">当前项目设置了加密访问，请输入访问密码。</p>
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
           <Input type="password" value={password} placeholder="输入访问密码" onChange={(event) => setPassword(event.target.value)} />
           {error ? <p className="text-sm text-red-200">{error}</p> : null}
-          <Button className="w-full" disabled={loading || !password}>{loading ? "校验中..." : "进入 Demo"}</Button>
+          <Button className="w-full" disabled={loading || !password}>{loading ? "校验中..." : "进入"}</Button>
         </form>
       </Card>
     </main>
