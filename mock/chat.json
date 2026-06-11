@@ -1,0 +1,3 @@
+{
+  "reply": "可以先运行 pnpm generate:adapters && pnpm build，确认 dist 与 /api/* 都正常；随后在 Vercel 导入仓库，并在项目设置中配置服务端环境变量。"
+}

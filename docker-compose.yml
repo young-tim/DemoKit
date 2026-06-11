@@ -1,0 +1,12 @@
+services:
+  demokit:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      DEMO_RUNTIME: docker
+      NODE_ENV: production
+      PORT: 3000
+    restart: unless-stopped

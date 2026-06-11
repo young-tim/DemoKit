@@ -1,0 +1,5 @@
+{
+  "title": "Demo 输出样例",
+  "summary": "这是一个可替换的 Mock 结果，适合在没有真实后端或 API Key 时完成演示闭环。",
+  "nextActions": ["修改 mock/result.json", "配置 CUSTOM_API_BASE_URL", "在页面中替换为 /api/proxy 调用"]
+}

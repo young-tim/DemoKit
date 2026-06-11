@@ -1,0 +1,27 @@
+{
+  "/api/health": {
+    "vercel": "api/health.ts",
+    "netlify": "netlify/functions/health.ts",
+    "cloudflare": "functions/api/health.ts"
+  },
+  "/api/mock/:path*": {
+    "vercel": "api/mock/[...path].ts",
+    "netlify": "netlify/functions/mock.ts",
+    "cloudflare": "functions/api/mock/[[path]].ts"
+  },
+  "/api/proxy/:path*": {
+    "vercel": "api/proxy/[...path].ts",
+    "netlify": "netlify/functions/proxy.ts",
+    "cloudflare": "functions/api/proxy/[[path]].ts"
+  },
+  "/api/access/status": {
+    "vercel": "api/access/status.ts",
+    "netlify": "netlify/functions/access-status.ts",
+    "cloudflare": "functions/api/access/status.ts"
+  },
+  "/api/access/verify": {
+    "vercel": "api/access/verify.ts",
+    "netlify": "netlify/functions/access-verify.ts",
+    "cloudflare": "functions/api/access/verify.ts"
+  }
+}

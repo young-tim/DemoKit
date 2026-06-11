@@ -1,0 +1,39 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+# <demokit-api-redirects>
+# This block is auto-generated. Do not edit manually.
+
+[[redirects]]
+  from = "/api/health"
+  to = "/.netlify/functions/health"
+  status = 200
+
+[[redirects]]
+  from = "/api/access/status"
+  to = "/.netlify/functions/access-status"
+  status = 200
+
+[[redirects]]
+  from = "/api/access/verify"
+  to = "/.netlify/functions/access-verify"
+  status = 200
+
+[[redirects]]
+  from = "/api/mock/*"
+  to = "/.netlify/functions/mock"
+  status = 200
+
+[[redirects]]
+  from = "/api/proxy/*"
+  to = "/.netlify/functions/proxy"
+  status = 200
+
+# </demokit-api-redirects>
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

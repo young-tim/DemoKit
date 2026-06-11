@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "name": "Demo Landing", "status": "ready", "score": 92 },
+    { "name": "API Proxy", "status": "ready", "score": 88 },
+    { "name": "Workflow PoC", "status": "draft", "score": 81 }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "steps": [
+    { "title": "收集输入", "description": "读取用户输入、环境变量和 Mock 数据。" },
+    { "title": "执行能力", "description": "通过 /api/mock 或 /api/proxy 触发服务端能力。" },
+    { "title": "整理结果", "description": "统一转换成可演示的文本、JSON、步骤和日志。" }
+  ],
+  "summary": "## 工作流执行完成
+- 核心链路已跑通
+- 后续可把 Mock 节点替换为真实 API 或 AI 模型
+- 推荐先在 API Debug 页面验证接口配置"
+}
