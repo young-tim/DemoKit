@@ -49,6 +49,13 @@ pnpm generate:adapters
 
 ## 部署方式
 
+### 一键部署
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyoung-tim%2FDemoKit)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/young-tim/DemoKit)
+
+- Cloudflare Pages：[创建 Pages 项目](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)，选择 GitHub 仓库 `young-tim/DemoKit` 后按项目内 `wrangler.toml` 和构建配置部署。
+
 ### Docker Compose
 
 ```bash
