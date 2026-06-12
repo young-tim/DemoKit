@@ -237,22 +237,39 @@ export function ChatDemoPage() {
     const decoder = new TextDecoder();
     let buffer = "";
 
+    const appendDelta = async (content: string) => {
+      if (!content) return;
+      setMessages((current) => current.map((message) => (message.id === assistantId ? { ...message, content: message.content + content } : message)));
+      // 当浏览器一次读到多条 SSE 时，主动让出一帧，避免 React 合并成一次性渲染。
+      await new Promise<void>((resolve) => window.setTimeout(resolve, 16));
+    };
+
+    const handleEvent = async (event: string) => {
+      const dataLines = event.split("\n").filter((line) => line.startsWith("data:"));
+      for (const line of dataLines) {
+        const payload = line.replace(/^data:\s*/, "").trim();
+        if (!payload || payload === "[DONE]") continue;
+        const data = JSON.parse(payload) as { type?: string; content?: string };
+        if (data.type === "delta" && data.content) {
+          await appendDelta(data.content);
+        }
+      }
+    };
+
     while (true) {
       const { value, done } = await reader.read();
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
+      buffer += decoder.decode(value || new Uint8Array(), { stream: !done });
       const events = buffer.split("\n\n");
       buffer = events.pop() || "";
 
       for (const event of events) {
-        const dataLine = event.split("\n").find((line) => line.startsWith("data:"));
-        if (!dataLine) continue;
-        const payload = dataLine.replace(/^data:\s*/, "");
-        const data = JSON.parse(payload) as { type?: string; content?: string };
-        if (data.type === "delta" && data.content) {
-          setMessages((current) => current.map((message) => (message.id === assistantId ? { ...message, content: message.content + data.content } : message)));
-        }
+        await handleEvent(event);
       }
+      if (done) break;
+    }
+
+    if (buffer.trim()) {
+      await handleEvent(buffer);
     }
   }
 

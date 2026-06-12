@@ -26,7 +26,7 @@ export function HomePage() {
             <h1 className="mt-5 text-5xl font-black leading-[0.95] tracking-tight text-white sm:text-7xl">{appEnv.title}</h1>
             <p className="mt-6 max-w-2xl text-lg leading-9 text-slate-300">{appEnv.description}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link className="rounded-full bg-emerald-300 px-5 py-3 text-sm font-bold text-slate-950 transition hover:-translate-y-0.5" to="/api-debug">验证 API</Link>
+              <Link className="rounded-full bg-emerald-300 px-5 py-3 text-sm font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-emerald-200" to="/chat">对话体验</Link>
               {appEnv.githubUrl ? <a className="rounded-full border border-slate-500/30 px-5 py-3 text-sm text-slate-200" href={appEnv.githubUrl}>GitHub</a> : null}
             </div>
           </div>

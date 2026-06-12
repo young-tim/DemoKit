@@ -131,7 +131,11 @@ async function* streamOpenAiCompatible(body: ChatStreamBody) {
 }
 
 async function writeMockStream(controller: ReadableStreamDefaultController<Uint8Array>, body: ChatStreamBody) {
-  for (const chunk of chunkText(buildMockReply(body))) {
+  await writeTextStream(controller, buildMockReply(body));
+}
+
+async function writeTextStream(controller: ReadableStreamDefaultController<Uint8Array>, text: string) {
+  for (const chunk of chunkText(text)) {
     controller.enqueue(sse({ type: "delta", content: chunk }));
     await sleep(24);
   }
@@ -157,7 +161,7 @@ export async function handleChatStream(req: CoreRequest) {
           return;
         }
       } catch {
-        controller.enqueue(sse({ type: "delta", content: "上游模型暂时不可用，已切换为本地 Mock 流式响应。\n\n" }));
+        await writeTextStream(controller, "上游模型暂时不可用，已切换为本地 Mock 流式响应。\n\n");
       }
 
       await writeMockStream(controller, body);
