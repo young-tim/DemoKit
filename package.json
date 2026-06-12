@@ -9,7 +9,7 @@
     "clean:generated": "tsx scripts/clean-generated.ts",
     "dev": "concurrently \"pnpm dev:web\" \"pnpm dev:api\"",
     "dev:web": "vite --host 0.0.0.0",
-    "dev:api": "tsx watch server/local.ts",
+    "dev:api": "tsx watch --include .env --exclude '!**/.env' server/local.ts",
     "prebuild": "pnpm generate:adapters",
     "build": "tsc && vite build",
     "preview": "vite preview --host 0.0.0.0",
