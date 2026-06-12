@@ -1,13 +1,13 @@
 export const demoCards = [
   {
-    title: "Tool Demo",
-    description: "输入参数、运行任务、展示结构化结果，适合文案生成、数据清洗和业务小工具。",
-    href: "/tool"
-  },
-  {
     title: "Chat Demo",
     description: "对话型 AI Demo 骨架，支持流式响应、图片附件状态、自定义模型和本地 API Key 配置。",
     href: "/chat"
+  },
+  {
+    title: "Tool Demo",
+    description: "输入参数、运行任务、展示结构化结果，适合文案生成、数据清洗和业务小工具。",
+    href: "/tool"
   },
   {
     title: "Workflow Demo",
