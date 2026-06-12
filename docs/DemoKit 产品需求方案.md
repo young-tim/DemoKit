@@ -540,7 +540,6 @@ GET /api/health
 ```Plain Text
 {
   "ok": true,
-  "runtime": "local | vercel | netlify | cloudflare | docker",
   "timestamp": 1234567890
 }
 ```

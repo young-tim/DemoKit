@@ -224,8 +224,7 @@ demokit-template/
   │   │       ├─ JsonViewer.tsx
   │   │       ├─ MarkdownViewer.tsx
   │   │       ├─ LogPanel.tsx
-  │   │       ├─ StepRunner.tsx
-  │   │       └─ EnvStatus.tsx
+  │   │       └─ StepRunner.tsx
   │   │
   │   ├─ config/
   │   │   ├─ app.config.ts
@@ -416,7 +415,6 @@ JsonViewer
 MarkdownViewer
 LogPanel
 StepRunner
-EnvStatus
 ```
 
 `DemoShell` 是所有 Demo 页面的通用容器，用于统一标题、说明、输入区、操作区、结果区和日志区。这样每个新 Demo 可以复用一致的页面结构。
@@ -1104,20 +1102,8 @@ GET /api/health
 ```JSON
 {
   "ok": true,
-  "runtime": "local",
   "timestamp": 1234567890
 }
-```
-
-runtime 值：
-
-```Plain Text
-local
-docker
-vercel
-netlify
-cloudflare
-unknown
 ```
 
 核心实现：
@@ -1405,41 +1391,52 @@ Cloudflare Pages Functions 使用 `onRequest` 作为入口。
 
 ```Plain Text
 # -----------------------------
-# Public app config
-# These variables are visible in frontend code.
+# 前端公开配置
+# 仅 VITE_* 前缀会进入前端构建产物，可用于页面展示
 # -----------------------------
+# 应用标题，显示在浏览器标签和首页
 VITE_APP_TITLE=DemoKit
+# 应用简介，显示在首页描述区域
 VITE_APP_DESCRIPTION=Lightweight demo starter kit
+# 是否启用 Demo 模式标识
 VITE_DEMO_MODE=true
+# 主题标识，预留用于切换样式主题
 VITE_APP_THEME=default
+# GitHub 仓库地址，首页可展示跳转链接；留空则不显示
+VITE_GITHUB_URL=https://github.com/young-tim/DemoKit
 
 # -----------------------------
-# Runtime
-# Optional. Used by /api/health.
-# local | docker | vercel | netlify | cloudflare
+# 服务端口
 # -----------------------------
-DEMO_RUNTIME=local
+# 前端或生产模式下的 Web 服务端口
+PORT=3000
+# 本地开发时 API 服务端口（pnpm dev:api）
+API_PORT=8787
 
 # -----------------------------
-# Access control
-# If DEMO_ACCESS_PASSWORD is empty, public access is allowed.
-# If set, users must enter this password before viewing the demo.
-# This is lightweight demo protection, not production authentication.
+# 访问控制
 # -----------------------------
+# Demo 访问密码；留空表示公开访问，有值则启用轻量密码保护
 DEMO_ACCESS_PASSWORD=
+# 访问凭证有效期（小时），通过密码验证后在此时间内免重复输入
 DEMO_ACCESS_EXPIRES_HOURS=24
 
 # -----------------------------
-# API proxy config
-# These variables are only used by server-side proxy functions.
-# Do not expose API keys to frontend.
+# API 代理配置
+# 以下变量仅服务端使用，不会暴露给前端
+# 前端通过 /api/proxy/{服务名}/* 调用，密钥由服务端自动注入
 # -----------------------------
+# OpenAI API 密钥，用于 /api/proxy/openai/*
 OPENAI_API_KEY=
+# OpenAI API 根地址，默认官方地址；可改为兼容 OpenAI 协议的中转地址
 OPENAI_BASE_URL=https://api.openai.com/v1
 
+# 自定义上游 API 密钥，用于 /api/proxy/custom/*，会通过 X-API-Key 请求头注入
 CUSTOM_API_KEY=
+# 自定义上游 API 根地址，例如 https://httpbin.org 用于本地代理测试
 CUSTOM_API_BASE_URL=
 
+# 代理请求超时时间（毫秒）
 PROXY_TIMEOUT=30000
 ```
 
@@ -1780,21 +1777,17 @@ export async function handleMock(req: CoreRequest): Promise<CoreResponse> {
 
 ## 十七、构建与运行模式
 
-DemoKit 存在五种运行模式：
-
-运行模式可以通过环境变量判断：
+DemoKit 支持五种部署方式：
 
 ```Plain Text
-DEMO_RUNTIME=local
-DEMO_RUNTIME=docker
-DEMO_RUNTIME=vercel
-DEMO_RUNTIME=netlify
-DEMO_RUNTIME=cloudflare
+local      # 本地开发（pnpm dev）
+docker     # Docker Compose
+vercel     # Vercel Serverless
+netlify    # Netlify Functions
+cloudflare # Cloudflare Pages Functions
 ```
 
-如果未配置，则自动判断或返回 `unknown`。
-
-`/api/health` 应返回当前 runtime，方便调试部署是否正确。
+前端只调用相对路径 `/api/*`，不感知具体运行环境。部署验证可通过 `GET /api/health` 确认 API 是否正常响应。
 
 ---
 
@@ -2028,7 +2021,7 @@ export interface AppError {
 
 风险：不同部署平台配置环境变量的位置不同，用户容易漏配。
 
-处理策略：README 分别提供 Vercel、Netlify、Cloudflare、Docker 的环境变量配置说明，并提供 `/api/health` 和 `EnvStatus` 用于快速排查。
+处理策略：README 分别提供 Vercel、Netlify、Cloudflare、Docker 的环境变量配置说明，并提供 `/api/health` 用于快速排查 API 是否可用。
 
 ---
 

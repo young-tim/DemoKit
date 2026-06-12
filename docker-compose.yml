@@ -6,7 +6,6 @@ services:
     env_file:
       - .env
     environment:
-      DEMO_RUNTIME: docker
       NODE_ENV: production
       PORT: 3000
     restart: unless-stopped

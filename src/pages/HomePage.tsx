@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Rocket, ShieldCheck, TerminalSquare } from "lucide-react";
-import { EnvStatus } from "../components/demo/EnvStatus";
 import { Badge } from "../components/ui/Badge";
 import { Card } from "../components/ui/Card";
 import { demoCards } from "../config/demo.config";
@@ -19,10 +18,6 @@ export function HomePage() {
               <div className="text-xs text-slate-500">template starter</div>
             </div>
           </div>
-          {/* <div className="flex flex-wrap gap-2">
-            <EnvStatus />
-            <Badge>Vite + React + Hono</Badge>
-          </div> */}
         </nav>
 
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">

@@ -24,7 +24,7 @@
 - 错误响应沿用 `jsonError`，成功响应沿用 `jsonOk` 或现有 `CoreResponse` 结构。
 
 ## 必要接口路径/约定
-- `GET /api/health`：健康检查和运行环境探测，用于首页状态和部署验证。
+- `GET /api/health`：健康检查，用于部署验证。
 - `GET /api/mock/*`：读取 `mock/*.json` 演示数据，路径名与 mock 文件名保持一致。
 - `GET /api/access/status`：检查当前部署是否启用访问保护。
 - `POST /api/access/verify`：校验 `DEMO_ACCESS_PASSWORD`，前端不要直接读取密码。
@@ -43,3 +43,4 @@
 ## AI 修改边界
 - 修改应小而聚焦，不做无关重构，不引入重型框架、状态管理或数据库。
 - 保持模板通用性，不把单个客户/单个 Demo 的私有业务强绑定进核心架构。
+- 尽量使用中文注释

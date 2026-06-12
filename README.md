@@ -45,8 +45,6 @@ pnpm build        # 生成部署产物
 pnpm generate:adapters
 ```
 
-接口路径、生成目录和 AI 开发规则请查看 `AGENTS.md`，README 只保留使用和部署所需信息。
-
 ## 部署方式
 
 ### 一键部署
@@ -69,16 +67,6 @@ docker compose up -d --build
 pnpm docker:up
 pnpm docker:down
 ```
-
-### Node
-
-```bash
-pnpm install
-pnpm build
-pnpm start
-```
-
-生产模式下默认使用 `PORT=3000`，可在 `.env` 或部署平台环境变量中调整。
 
 ### Vercel
 
@@ -106,12 +94,22 @@ pnpm deploy:cloudflare
 
 部署前请在 Cloudflare Pages 项目设置中配置需要的服务端环境变量。
 
+### 本地Node
+
+```bash
+pnpm install
+pnpm build
+pnpm start
+```
+
+生产模式下默认使用 `PORT=3000`，可在 `.env` 或部署平台环境变量中调整。
+
 ## 环境变量
 
 复制 `.env.example` 后按需修改：
 
 - `VITE_APP_TITLE`、`VITE_APP_DESCRIPTION`、`VITE_APP_THEME`：前端展示配置。
-- `DEMO_RUNTIME`、`PORT`、`API_PORT`：运行环境和端口配置。
+- `PORT`、`API_PORT`：服务端口配置。
 - `DEMO_ACCESS_PASSWORD`、`DEMO_ACCESS_EXPIRES_HOURS`：访问保护配置，密码为空时公开访问。
 - `OPENAI_API_KEY`、`OPENAI_BASE_URL`、`CUSTOM_API_KEY`、`CUSTOM_API_BASE_URL`：服务端代理使用的上游配置。
 - `PROXY_TIMEOUT`：代理请求超时时间。
