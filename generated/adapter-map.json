@@ -9,6 +9,11 @@
     "netlify": "netlify/functions/mock.ts",
     "cloudflare": "functions/api/mock/[[path]].ts"
   },
+  "/api/chat/stream": {
+    "vercel": "api/chat/stream.ts",
+    "netlify": "netlify/functions/chat-stream.ts",
+    "cloudflare": "functions/api/chat/stream.ts"
+  },
   "/api/proxy/:path*": {
     "vercel": "api/proxy/[...path].ts",
     "netlify": "netlify/functions/proxy.ts",

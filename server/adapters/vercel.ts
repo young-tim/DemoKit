@@ -14,7 +14,7 @@ export async function toCoreRequest(req: any) {
   };
 }
 
-export function sendVercelResponse(res: any, coreRes: CoreResponse) {
+export async function sendVercelResponse(res: any, coreRes: CoreResponse) {
   for (const [key, value] of Object.entries(coreRes.headers || {})) res.setHeader(key, value);
-  return res.status(coreRes.status).send(bodyToString(coreRes));
+  return res.status(coreRes.status).send(await bodyToString(coreRes));
 }

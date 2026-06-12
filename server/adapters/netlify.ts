@@ -14,6 +14,6 @@ export async function toCoreRequest(event: any) {
   };
 }
 
-export function toNetlifyResponse(coreRes: CoreResponse) {
-  return { statusCode: coreRes.status, headers: coreRes.headers || {}, body: bodyToString(coreRes) };
+export async function toNetlifyResponse(coreRes: CoreResponse) {
+  return { statusCode: coreRes.status, headers: coreRes.headers || {}, body: await bodyToString(coreRes) };
 }

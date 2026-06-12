@@ -1,5 +1,5 @@
 import type { CoreResponse } from "../core/request";
-import { bodyToString, normalizeHeaders, parseBody } from "./common";
+import { bodyToString, isReadableStream, normalizeHeaders, parseBody } from "./common";
 
 export async function toCoreRequest(request: Request) {
   const url = new URL(request.url);
@@ -14,6 +14,7 @@ export async function toCoreRequest(request: Request) {
   };
 }
 
-export function toCloudflareResponse(coreRes: CoreResponse) {
-  return new Response(bodyToString(coreRes), { status: coreRes.status, headers: coreRes.headers });
+export async function toCloudflareResponse(coreRes: CoreResponse) {
+  const body = isReadableStream(coreRes.body) ? coreRes.body : await bodyToString(coreRes);
+  return new Response(body, { status: coreRes.status, headers: coreRes.headers });
 }

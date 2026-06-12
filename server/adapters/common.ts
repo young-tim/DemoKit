@@ -19,6 +19,22 @@ export async function parseBody(rawBody?: string, contentType = "") {
   return rawBody;
 }
 
-export function bodyToString(coreRes: CoreResponse) {
+export function isReadableStream(body: unknown): body is ReadableStream<Uint8Array> {
+  return typeof ReadableStream !== "undefined" && body instanceof ReadableStream;
+}
+
+export async function bodyToString(coreRes: CoreResponse) {
+  if (isReadableStream(coreRes.body)) {
+    const reader = coreRes.body.getReader();
+    const decoder = new TextDecoder();
+    let text = "";
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      text += decoder.decode(value, { stream: true });
+    }
+    text += decoder.decode();
+    return text;
+  }
   return typeof coreRes.body === "string" ? coreRes.body : JSON.stringify(coreRes.body);
 }

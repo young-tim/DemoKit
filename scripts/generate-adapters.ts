@@ -34,6 +34,7 @@ function getVercelFilePath(routePath: string) {
   if (routePath === "/api/health") return "api/health.ts";
   if (routePath === "/api/access/status") return "api/access/status.ts";
   if (routePath === "/api/access/verify") return "api/access/verify.ts";
+  if (routePath === "/api/chat/stream") return "api/chat/stream.ts";
   if (routePath.startsWith("/api/mock")) return "api/mock/[...path].ts";
   if (routePath.startsWith("/api/proxy")) return "api/proxy/[...path].ts";
   throw new Error(`Unsupported Vercel route: ${routePath}`);
@@ -47,6 +48,7 @@ function getCloudflareFilePath(routePath: string) {
   if (routePath === "/api/health") return "functions/api/health.ts";
   if (routePath === "/api/access/status") return "functions/api/access/status.ts";
   if (routePath === "/api/access/verify") return "functions/api/access/verify.ts";
+  if (routePath === "/api/chat/stream") return "functions/api/chat/stream.ts";
   if (routePath.startsWith("/api/mock")) return "functions/api/mock/[[path]].ts";
   if (routePath.startsWith("/api/proxy")) return "functions/api/proxy/[[path]].ts";
   throw new Error(`Unsupported Cloudflare route: ${routePath}`);
@@ -112,6 +114,11 @@ function updateNetlifyToml() {
 [[redirects]]
   from = "/api/access/verify"
   to = "/.netlify/functions/access-verify"
+  status = 200
+
+[[redirects]]
+  from = "/api/chat/stream"
+  to = "/.netlify/functions/chat-stream"
   status = 200
 
 [[redirects]]

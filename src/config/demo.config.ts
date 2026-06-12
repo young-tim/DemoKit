@@ -6,7 +6,7 @@ export const demoCards = [
   },
   {
     title: "Chat Demo",
-    description: "对话型 AI Demo 骨架，第一版使用 Mock 回复，保留模型选择和消息结构。",
+    description: "对话型 AI Demo 骨架，支持流式响应、图片附件状态、模型切换和本地 API Key 配置。",
     href: "/chat"
   },
   {

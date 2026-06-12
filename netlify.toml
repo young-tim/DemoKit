@@ -22,6 +22,11 @@
   status = 200
 
 [[redirects]]
+  from = "/api/chat/stream"
+  to = "/.netlify/functions/chat-stream"
+  status = 200
+
+[[redirects]]
   from = "/api/mock/*"
   to = "/.netlify/functions/mock"
   status = 200
