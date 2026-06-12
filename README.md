@@ -24,7 +24,7 @@ pnpm install
 pnpm dev
 ```
 
-启动后访问 `http://localhost:3000`。开发模式下前端由 Vite 提供服务并支持 HMR，API 服务默认运行在 `8787`，会通过 `tsx watch` 在 `server/*` 相关文件变更后自动重启。前端请求会通过相对路径访问 `/api/*`。
+启动后访问 `http://localhost:3000`。开发模式下前端由 Vite 提供服务并支持 HMR，API 服务默认运行在 `8787`，会通过 `tsx watch` 在 `server/*` 变更后自动重启。修改 `.env` 后需手动重启 `pnpm dev` 才能生效。前端请求会通过相对路径访问 `/api/*`。
 
 ## 本地开发
 
