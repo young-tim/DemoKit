@@ -1,3 +1,5 @@
+
+
 # DemoKit - 轻量 Demo 工程模板
 
 DemoKit 是一个用于快速搭建可访问 Web Demo 的轻量工程模板。它适合原型验证、产品演示、AI 应用 Demo、接口能力验证和客户 PoC，目标是让你少处理工程底座，多关注 Demo 本身要展示什么。
@@ -24,7 +26,7 @@ pnpm install
 pnpm dev
 ```
 
-启动后访问 `http://localhost:3000`。开发模式下前端由 Vite 提供服务并支持 HMR，API 服务默认运行在 `8787`，会通过 `tsx watch` 在 `server/*` 或 `.env` 变更后自动重启并重新加载环境变量。前端请求会通过相对路径访问 `/api/*`。
+启动后访问 `http://localhost:5173`。开发模式下前端由 Vite 提供服务并支持 HMR，API 服务默认运行在 `8787`，会通过 `tsx watch` 在 `server/*` 或 `.env` 变更后自动重启并重新加载环境变量。前端请求会通过相对路径访问 `/api/*`。
 
 ## 本地开发
 
